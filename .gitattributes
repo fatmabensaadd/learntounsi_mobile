@@ -1,6 +1,5 @@
-# Forcer GitHub à reconnaître Dart
 *.dart linguist-detectable=true
-
-# Ignorer les fichiers C++ générés par Flutter
+*.cmake linguist-detectable=false
+CMakeLists.txt linguist-detectable=false
 *.cpp linguist-detectable=false
 *.h linguist-detectable=false
