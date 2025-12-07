@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/matiere.dart';
+import '../model/matiere.dart';
 
 class HomeViewModel extends ChangeNotifier {
   List<Matiere> matieres = [];

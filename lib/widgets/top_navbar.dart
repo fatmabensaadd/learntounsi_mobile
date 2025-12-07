@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../views/home.dart';
-import '../../views/formations.dart';
-import '../../views/apropos.dart';
-import '../../views/contact.dart';
+import '../../view/home.dart';
+import '../../view/formations.dart';
+import '../../view/apropos.dart';
+import '../../view/contact.dart';
 
 class TopNavigationBar extends StatelessWidget {
   const TopNavigationBar({super.key});

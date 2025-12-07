@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:learntounsi_mobile/viewmodels/courparM.dart';
+import 'package:learntounsi_mobile/viewmodel/courparM.dart';
 import 'package:provider/provider.dart';
-import 'viewmodels/homeVM.dart';
-import 'viewmodels/auth_viewmodel.dart';
-import 'views/home.dart';
+import 'viewmodel/homeVM.dart';
+import 'viewmodel/auth_viewmodel.dart';
+import 'view/home.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:webview_flutter/webview_flutter.dart';

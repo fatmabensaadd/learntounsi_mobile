@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/cours.dart';
+import '../model/cours.dart';
 
 class CoursParMatiereVM extends ChangeNotifier {
   List<Cours> courses = [];

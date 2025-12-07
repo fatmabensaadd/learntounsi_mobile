@@ -1,25 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../viewmodels/courparM.dart';
+import '../viewmodel/courparM.dart';
 import 'connexion.dart';
 import 'page_cours.dart';
 
-class CoursParMatierePage extends StatelessWidget {
+class CoursParMatierePage extends StatefulWidget {
   final String matiere;
 
   CoursParMatierePage({required this.matiere});
 
   @override
+  State<CoursParMatierePage> createState() => _CoursParMatierePageState();
+}
+
+class _CoursParMatierePageState extends State<CoursParMatierePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // 💥 Toujours recharger les cours quand on ouvre la page
+    Future.microtask(() {
+      Provider.of<CoursParMatiereVM>(context, listen: false)
+          .loadCourses(widget.matiere);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final vm = Provider.of<CoursParMatiereVM>(context);
 
-    if (vm.courses.isEmpty && !vm.loading) {
-      vm.loadCourses(matiere);
-    }
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cours : $matiere"),
+        title: Text("Cours : ${widget.matiere}"),
         backgroundColor: const Color(0xFF234138),
       ),
 
@@ -69,7 +81,8 @@ class CoursParMatierePage extends StatelessWidget {
                       ),
 
                       const SizedBox(height: 8),
-                      Text(c.description, style: TextStyle(fontSize: 15, color: Colors.grey[700])),
+                      Text(c.description,
+                          style: TextStyle(fontSize: 15, color: Colors.grey[700])),
 
                       const SizedBox(height: 16),
 
@@ -82,13 +95,14 @@ class CoursParMatierePage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (_) => PageCours(
-                                matiere: matiere,
+                                matiere: widget.matiere,
                                 cours: c.titre,
                               ),
                             ),
                           );
                         },
-                        child: const Text("Commencer", style: TextStyle(color: Colors.white)),
+                        child: const Text("Commencer",
+                            style: TextStyle(color: Colors.white)),
                       )
                     ],
                   ),

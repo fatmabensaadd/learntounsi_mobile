@@ -49,7 +49,6 @@ class _PageCoursState extends State<PageCours> {
     final doc = snap.docs.first;
     final data = doc.data() as Map<String, dynamic>;
 
-    // 🔥 Vérification correcte du champ payant
     final payantValue = data["payant"].toString().trim().toLowerCase();
     isPayant = payantValue == "oui" || payantValue == "true";
 
@@ -63,7 +62,6 @@ class _PageCoursState extends State<PageCours> {
     setState(() => loading = false);
   }
 
-  // ⭐ Fonction paiement Paymee
   Future<void> startPayment() async {
     final user = FirebaseAuth.instance.currentUser;
 

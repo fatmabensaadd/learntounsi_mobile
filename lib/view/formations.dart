@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../widgets/top_navbar.dart';
 import 'page_cours.dart';
-import '../viewmodels/auth_viewmodel.dart';
+import '../viewmodel/auth_viewmodel.dart';
 import 'connexion.dart';
 import '../widgets/Cappbar.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../viewmodels/homeVM.dart';
-import '../viewmodels/auth_viewmodel.dart';
+import '../viewmodel/homeVM.dart';
+import '../viewmodel/auth_viewmodel.dart';
 
 import 'connexion.dart';
 import 'coursparMA.dart';

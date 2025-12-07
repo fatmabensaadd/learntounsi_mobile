@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../viewmodels/auth_viewmodel.dart';
+import '../viewmodel/auth_viewmodel.dart';
 import 'home.dart';
-import 'register.dart';
 
-class LoginPage extends StatefulWidget {
-  final Widget? redirectTo;
-
-  const LoginPage({super.key, this.redirectTo});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
+  final username = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
 
@@ -26,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
       appBar: AppBar(
         backgroundColor: const Color(0xFF234138),
-        title: const Text("Connexion"),
+        title: const Text("Inscription"),
       ),
 
       body: Center(
@@ -34,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           width: 420,
           padding: const EdgeInsets.all(32),
           margin: const EdgeInsets.only(top: 40),
+
           decoration: BoxDecoration(
             gradient: const LinearGradient(
               colors: [Color(0xFFE0EEC6), Color(0xFFC5E782)],
@@ -54,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                "Connexion",
+                "Créer un compte",
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
@@ -64,28 +63,10 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 24),
 
-              // Email
               TextField(
-                controller: email,
+                controller: username,
                 decoration: InputDecoration(
-                  hintText: "Email",
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Color(0xFF7CA982)),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // Password
-              TextField(
-                controller: password,
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: "Mot de passe",
+                  hintText: "Nom d'utilisateur",
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
@@ -97,11 +78,39 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 14),
 
-              if (authVM.error != null)
-                Text(
-                  authVM.error!,
-                  style: const TextStyle(color: Color(0xFFD9534F)),
+              TextField(
+                controller: email,
+                decoration: InputDecoration(
+                  hintText: "Email",
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.grey.shade600),
+                  ),
                 ),
+              ),
+
+              const SizedBox(height: 14),
+
+              TextField(
+                controller: password,
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Mot de passe",
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.grey.shade600),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 14),
+
+              if (authVM.error != null)
+                Text(authVM.error!, style: const TextStyle(color: Colors.red)),
 
               const SizedBox(height: 14),
 
@@ -116,53 +125,27 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(8)),
                 ),
                 onPressed: () async {
-                  await authVM.login(
+                  await authVM.register(
                     email.text.trim(),
                     password.text.trim(),
+                    username.text.trim(),
                   );
 
                   if (authVM.user != null) {
-                    if (widget.redirectTo != null) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => widget.redirectTo!,
-                        ),
-                      );
-                    } else {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const HomePage(),
-                        ),
-                      );
-                    }
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const HomePage(),
+                      ),
+                    );
                   }
                 },
                 child: const Text(
-                  "Se connecter",
+                  "S'inscrire",
                   style: TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
-
-              const SizedBox(height: 12),
-
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => RegisterPage()),
-                  );
-                },
-                child: const Text(
-                  "Pas encore de compte ? S'inscrire",
-                  style: TextStyle(
-                    color: Color(0xFF243E36),
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              )
             ],
           ),
         ),
