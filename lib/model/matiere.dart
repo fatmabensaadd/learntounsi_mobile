@@ -1,31 +1,43 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Matiere {
-  final String id; // ID du document Firestore
+  final String id;
   String titre;
   num prix;
   String? description;
-  String? categorie;
+  String? category;
   String? image;
 
-  Matiere(this.id, this.titre, this.prix, this.description, this.categorie, this.image);
+  Matiere({
+    required this.id,
+    required this.titre,
+    required this.prix,
+    this.description,
+    this.category,
+    this.image,
+  });
 
-// Créer une Matiere depuis un document Firestore
-  factory Matiere.fromFirestore(DocumentSnapshot doc) {
-    Map<String, dynamic> data = doc.data() as Map<String, dynamic>; //transforme doc.data() en map
+  factory Matiere.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> doc,
+      ) {
+    final data = doc.data()!;
+
     return Matiere(
-        doc.id, data['titre'] ?? '', data['prix'], data['description'], data['category'] ?? '', data['image']
+      id: doc.id,
+      titre: data['titre'] ?? '',
+      prix: data['prix'] ?? 0,
+      description: data['description'],
+      category: data['category'] ?? 'autre',
+      image: data['image'],
     );
   }
 
-
-// Convertir en Map pour envoyer à Firestore
   Map<String, dynamic> toFirestore() {
     return {
       'titre': titre,
       'prix': prix,
       'description': description,
-      'category': categorie,
+      'category': category,
       'image': image,
     };
   }

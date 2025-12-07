@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodel/stats_matieres_viewmodel.dart';
 import 'package:learntounsi_mobile/main.dart';
+import '../widgets/gardient.dart';
 
 class EcranStatistiquesMatieres extends StatelessWidget { //dans cette view on a opté pour Provider au lieu de Setstate car on a plusieurs widgets dans l’écran qui doivent rebuild ensemble à partir d’une même source de données → impossible avec un seul setState.
 

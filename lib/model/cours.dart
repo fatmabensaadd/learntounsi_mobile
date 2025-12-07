@@ -4,7 +4,7 @@ class Cours {
   final String id; // ID du document Firestore
   String titre;
   num prix;
-  String? description;
+  String description;
   final String? pdf_gratuit;  // lien vers le PDF gratuit
   final String? pdf_payant;   // lien vers le PDF payant
   final String matiere; // référence à la matière parente

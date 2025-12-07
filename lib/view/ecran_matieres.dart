@@ -4,6 +4,7 @@ import 'package:learntounsi_mobile/viewmodel/matieres_viewmodel.dart';
 import 'package:learntounsi_mobile/model/matiere.dart';
 import 'dart:io';                       // pour File
 import 'package:file_picker/file_picker.dart'; // pour FilePicker
+import '../widgets/gardient.dart';
 
 class EcranMatieres extends StatefulWidget {
   @override
@@ -447,7 +448,7 @@ class _EcranMatieresState extends State<EcranMatieres> {
     final titreCtrl = TextEditingController(text: m.titre);
     final descCtrl  = TextEditingController(text: m.description);
     final prixCtrl  = TextEditingController(text: m.prix.toString());
-    final catCtrl   = TextEditingController(text: m.categorie);
+    final catCtrl   = TextEditingController(text: m.category);
     final imageCtrl = TextEditingController();
     File? _selectedFile;
 

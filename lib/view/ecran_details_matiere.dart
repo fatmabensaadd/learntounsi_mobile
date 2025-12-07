@@ -7,7 +7,7 @@ import 'package:learntounsi_mobile/model/cours.dart';
 import 'package:learntounsi_mobile/viewmodel/cours_viewmodel.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
+import '../widgets/gardient.dart';
 class EcranDetailsMatiere extends StatefulWidget {
   @override
   _EcranDetailsMatiereState createState() => _EcranDetailsMatiereState();

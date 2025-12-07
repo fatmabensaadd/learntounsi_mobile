@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../viewmodel/etudiants_viewmodel.dart';
 import '../model/utilisateur.dart';
 import 'package:learntounsi_mobile/main.dart';
+import '../widgets/gardient.dart';
 
 class EcranListeEtudiants extends StatefulWidget {
   @override
