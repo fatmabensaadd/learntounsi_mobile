@@ -85,6 +85,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'learntounsi-7d90b.firebasestorage.app',
     measurementId: 'G-3FHKFHB77X',
   );
-
-
 }
